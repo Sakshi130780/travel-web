@@ -1,0 +1,74 @@
+import React, { useState }  from 'react'
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {Link, NavLink} from 'react-router-dom';
+
+
+
+
+
+function Navbar() {
+
+  const [open, setOpen] = useState(false);
+  return (
+
+   
+    <header className='flex bg-[#000000] opacity-90 justify-between w-full items-center p-4'>
+      
+       
+
+        <nav className='hidden text-white lg:flex space-x-8 font-poppins '>
+        <div>
+          <NavLink to= "/" className={({isActive}) => `${isActive ? "text-[#E94132] font-bold" : ""}` }>
+            Home
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to= "/about" className={({isActive}) => `${isActive ? "text-[#E94132] font-bold" : ""}` }>About Us</NavLink>
+        </div>
+        <div>
+          <NavLink to = "/travelServices" className={({isActive}) => `${isActive ? "text-[#E94132] font-bold" : ""}` }>
+            Travel Services
+          </NavLink>
+        </div>
+        <div>
+          <Link>Vacation Quote</Link>
+        </div>
+        </nav>
+      
+      <div className='hidden lg:flex text-white '>
+       <Link to= "contact"><button className='bg-gradient-to-r from-[#F97150] to-[#FF668A]  
+       mr-15 px-5 py-3 rounded-3xl font-poppins font-medium '>CONTACT US</button></Link>
+      </div>  
+      {/* Tab/Mobile Nav */}
+      <button className='text-white lg:hidden mr-4 md:mr-14 ' onClick={() => setOpen(!open)}>
+        {open ? <XMarkIcon className='h-8 w-8'/> :
+        <Bars3Icon className='h-8 w-8'/>
+        }
+      </button>
+      {open && (
+        <nav className="absolute top-16 left-0 w-full bg-black text-white flex flex-col items-center gap-4 py-6 font-poppins lg:hidden">
+          <div>
+          <NavLink to= "/" className={({isActive}) => `${isActive ? "text-[#E94132] font-bold" : ""}` }>
+            Home
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to= "/about" className={({isActive}) => `${isActive ? "text-[#E94132] font-bold" : ""}` }>About Us</NavLink>
+        </div>
+        <div>
+          <NavLink to = "/travelServices" className={({isActive}) => `${isActive ? "text-[#E94132] font-bold" : ""}` }>
+            Travel Services
+          </NavLink>
+        </div>
+        <div>
+          <Link>Vacation Quote</Link>
+        </div>
+        <Link to= "contact"><button className='bg-gradient-to-r from-[#F97150] to-[#FF668A] px-6 py-4 rounded-3xl font-poppins font-medium '>CONTACT US</button></Link>
+          
+        </nav>
+      )}
+    </header>
+  )
+}
+
+export default Navbar
